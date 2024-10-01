@@ -1,0 +1,229 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Object Detection Techniques</title>
+    <link rel="stylesheet" href="css/style.css">
+    <style>
+        /* Reset some common styling */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        /* Body styling with blue gradient */
+        body {
+            font-family: 'Roboto', sans-serif;
+            background: linear-gradient(135deg, #1e3c72, #2a5298); /* Blue gradient */
+            color: #333;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+
+        /* Navbar styling */
+        nav {
+            background-color: rgba(0, 0, 0, 0.8);
+            padding: 15px 0;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        nav ul li {
+            margin: 0 20px;
+        }
+
+        nav ul li a {
+            color: #fff;
+            font-weight: 500;
+            font-size: 18px;
+            text-decoration: none;
+            padding: 10px 20px;
+            transition: all 0.3s ease;
+        }
+
+        nav ul li a:hover {
+            background-color: #2a5298;
+            color: #fff;
+            border-radius: 20px;
+        }
+
+        /* Header Styling */
+        header {
+            background: rgba(255, 255, 255, 0.9);
+            text-align: center;
+            padding: 50px 20px;
+            box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.1);
+            border-bottom-left-radius: 50% 20%;
+            border-bottom-right-radius: 50% 20%;
+        }
+
+        header h1 {
+            color: #2a5298;
+            font-size: 48px;
+            letter-spacing: 2px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Main Section Styling */
+        main {
+            padding: 20px;
+            flex-grow: 1;
+        }
+
+        .topic {
+            background: #fff;
+            margin: 20px 0;
+            padding: 20px;
+            border-radius: 15px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Additional styling for image placeholders */
+       /* Updated styling for image placeholders using Flexbox */
+        .image-placeholder {
+            display: flex; /* Use flexbox for layout */
+            justify-content: center; /* Center images horizontally */
+            flex-wrap: wrap; /* Allow images to wrap to the next line */
+            gap: 10px; /* Space between images */
+            margin: 10px 0;
+        }
+
+        .image-placeholder img {
+            max-width: 100%;
+            height: auto; /* Maintain aspect ratio */
+            border-radius: 10px; /* Rounded corners for images */
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Subtle shadow effect */
+            flex: 1 0 150px; /* Allow images to grow and shrink; minimum width of 150px */
+            max-height: 200px; /* Optional: set a maximum height */
+            object-fit: cover; /* Ensures the image covers the placeholder */
+        }
+
+                .image-placeholder img:hover {
+            transform: scale(1.05); /* Slightly zoom in on hover */
+            transition: transform 0.3s ease;
+        }
+
+
+        /* Footer Styling */
+        footer {
+            background-color: rgba(0, 0, 0, 0.9);
+            color: #fff;
+            text-align: center;
+            padding: 30px 0;
+            width: 100%;
+            margin-top: auto; /* Ensures footer stays at the bottom */
+        }
+
+        footer p {
+            margin: 0;
+            font-size: 16px;
+        }
+
+        footer p a {
+            color: #2a5298;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        footer p a:hover {
+            text-decoration: underline;
+        }
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            nav ul {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            nav ul li {
+                margin: 10px 0;
+            }
+
+            header h1 {
+                font-size: 36px;
+            }
+
+            .content-section h2 {
+                font-size: 28px;
+            }
+
+            .content-section p {
+                font-size: 16px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header Section -->
+    <nav>
+        <ul>
+            <li><a href="home.html">Abstract</a></li>
+            <li><a href="topic1.html">Methodology</a></li>
+            <li><a href="topic2.html">Algorithms</a></li>
+            <li><a href="topic3.html">Experiments</a></li>
+            <li><a href="topic4.html">References</a></li>
+        </ul>
+    </nav>
+
+    <main>
+        <section class="topic" id="selective-search-vs-multibox">
+            <h2>Selective Search vs. MultiBox</h2>
+            <p>Selective Search is a region proposal algorithm that identifies potential object regions by hierarchically grouping pixels based on color, texture, and intensity similarities. However, it generates a large number of region proposals (approximately 4666 per image) with only moderate recall (62%). Increasing the number of proposals in Selective Search may seem like a good idea for better recall but often leads to more false positives and higher computational costs.</p>
+            <p>In contrast, <strong>MultiBox</strong> directly generates a fixed number of bounding box proposals (around 863 per image) while achieving much higher recall (91%). This balance of fewer proposals and higher recall makes MultiBox significantly more efficient.</p>
+            <p><strong>Impact of Proposal Count</strong>: Unlike Selective Search, where more proposals reduce precision, MultiBox maintains high precision with fewer proposals, saving computational resources while boosting performance.</p>
+            <div class="image-placeholder">
+                <!-- <img src="photos/multibox/image1.png" alt="MultiBox vs. Selective Search Results">
+                <img src="photos/multibox/image2.png" alt="MultiBox vs. Selective Search Results">
+                <img src="photos/multibox/image3.png" alt="MultiBox vs. Selective Search Results"> -->
+
+            </div>
+        </section>
+        
+        <section class="topic" id="multibox-post-classification">
+            <h2>MultiBox Post-Classification Model</h2>
+            <p>MultiBox improves upon region proposal methods by training with many negative samples, i.e., boxes that don't contain objects. This helps the model better differentiate between objects and background noise, leading to improved classification accuracy.</p>
+            <p><strong>Post-Classification for Selective Search</strong>: MultiBox's box proposals are easier to classify due to its training strategy. In contrast, Selective Search requires a separate classifier to refine the initial proposals, making the process slower and less efficient.</p>
+            <p>MultiBox outperforms Selective Search both in terms of recall and computational efficiency, highlighted by its faster performance on CPUs like Intel Xeon.</p>
+            <div class="image-placeholder">
+                <img src="photos/multibox/mch_heatmap.png" alt="MultiBox vs. Selective Search Efficiency Graph">
+            </div>
+        </section>
+        
+        <section class="topic" id="comparison-mch">
+            <h2>Comparison with Multi-Context HeatMap (MCH)</h2>
+            <p><strong>Multi-Context HeatMap (MCH)</strong> generates a heatmap indicating potential object regions across an image. While effective for simple objects like traffic signs, it struggles with complex shapes like storefronts.</p>
+            <p>The heatmap conversion into bounding boxes can lead to challenges like over-segmentation. Additionally, MCH is sensitive to noisy data, making it harder to generalize.</p>
+            <p><strong>MultiBox vs. MCH</strong>: MultiBox avoids these issues by proposing bounding boxes directly and is more robust to boundary ambiguities and label noise, performing better in complex detection scenarios.</p>
+            <div class="image-placeholder">
+                <img src="photos/multibox/mch.png" alt="MultiBox vs. MCH Object Detection Example">
+            </div>
+        </section>
+    
+        <section class="topic" id="comparison-human-performance">
+            <h2>Comparison with Human Performance</h2>
+            <p>Even trained human annotators struggle with ambiguous object boundaries, often leading to less than 90% precision. Disagreement can arise with unclear boundaries.</p>
+            <p><strong>MultiBox Performance</strong>: MultiBox rivals human performance by maintaining high recall and precision, with the added benefit of consistency and scalability.</p>
+            <p>While humans focus on high precision in low-recall scenarios, MultiBox balances recall and precision while avoiding subjectivity.</p>
+            <div class="image-placeholder">
+                <img src="photos/multibox/trained_heat_map.png" alt="Human vs. MultiBox Performance Comparison">
+            </div>
+        </section>
+        <footer>
+            <!-- <p>&copy; 2024 Home Dashboard. Built with ❤️ by <a href="#">Jeet Patel</a></p> -->
+            <p>© 2024 Roadside Shops Signs Detection. All rights reserved to Jeet Patel. <a href="#">Privacy Policy</a></p>
+        </footer>
+    
+    

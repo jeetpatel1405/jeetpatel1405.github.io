@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home Dashboard</title>
+    <link rel="stylesheet" href="css/style.css">
+    <style>
+        /* Reset some common styling */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        /* Body styling with blue gradient */
+        body {
+            font-family: 'Roboto', sans-serif;
+            background: linear-gradient(135deg, #1e3c72, #2a5298); /* Blue gradient */
+            margin: 0;
+            color: #333;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+
+        /* Navbar styling */
+        nav {
+            background-color: rgba(0, 0, 0, 0.8);
+            padding: 15px 0;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        nav ul li {
+            margin: 0 20px;
+        }
+
+        nav ul li a {
+            color: #fff;
+            font-weight: 500;
+            font-size: 18px;
+            text-decoration: none;
+            padding: 10px 20px;
+            transition: all 0.3s ease;
+        }
+
+        nav ul li a:hover {
+            background-color: #2a5298;
+            color: #fff;
+            border-radius: 20px;
+        }
+
+        /* Header Styling */
+        header {
+            background: rgba(255, 255, 255, 0.9);
+            text-align: center;
+            padding: 50px 20px;
+            box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.1);
+            border-bottom-left-radius: 50% 20%;
+            border-bottom-right-radius: 50% 20%;
+        }
+
+        header h1 {
+            color: #2a5298;
+            font-size: 48px;
+            letter-spacing: 2px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Dashboard grid styling */
+        .dashboard {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            padding: 40px;
+            max-width: 1200px;
+            margin: 0 auto;
+            flex-grow: 1;
+        }
+
+        .link-card {
+            background: #fff;
+            border-radius: 15px;
+            padding: 30px;
+            text-align: center;
+            box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            cursor: pointer;
+        }
+
+        .link-card h2 {
+            font-size: 24px;
+            color: #2a5298;
+            margin-bottom: 10px;
+        }
+
+        .link-card p {
+            font-size: 16px;
+            color: #555;
+        }
+
+        .link-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0px 15px 30px rgba(0, 0, 0, 0.15);
+        }
+
+        /* Content Section Styling */
+        .content-section {
+            padding: 50px;
+            background-color: #fff;
+            color: #333;
+            border-radius: 15px;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+            margin: 20px auto;
+            max-width: 1200px;
+        }
+
+        .content-section h2 {
+            color: #2a5298;
+            font-size: 32px;
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .content-section p {
+            font-size: 18px;
+            line-height: 1.6;
+            margin-bottom: 20px;
+        }
+
+        /* Footer Styling */
+        footer {
+            background-color: rgba(0, 0, 0, 0.9);
+            color: #fff;
+            text-align: center;
+            padding: 30px 0;
+            width: 100%;
+            margin-top: auto; /* Ensures footer stays at the bottom */
+        }
+
+        footer p {
+            margin: 0;
+            font-size: 16px;
+        }
+
+        footer p a {
+            color: #2a5298;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        footer p a:hover {
+            text-decoration: underline;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            nav ul {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            nav ul li {
+                margin: 10px 0;
+            }
+
+            header h1 {
+                font-size: 36px;
+            }
+
+            .content-section h2 {
+                font-size: 28px;
+            }
+
+            .content-section p {
+                font-size: 16px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Navbar Section -->
+    <nav>
+        <ul>
+            <li><a href="home.html">Abstract</a></li>
+            <li><a href="topic1.html">Methodology</a></li>
+            <li><a href="topic2.html">Algorithms</a></li>
+            <li><a href="topic3.html">Experiments</a></li>
+            <li><a href="topic4.html">References</a></li>
+        </ul>
+    </nav>
+
+
+
+
+    <!-- Content Section: Object Detection Approach -->
+    <section class="content-section">
+        <div class="content">
+            
+            <header>
+                <h1>Object Detection for Business Storefronts in Panoramic Images</h1>
+            </header>
+    
+            <h2>Introduction</h2>
+            <p>
+                This paper explores a novel approach for detecting business storefronts in large, high-resolution panoramic images.
+                Traditional object detection methods face challenges in terms of computational efficiency and detection coverage due to the high number of proposals generated.
+            </p>
+    
+            <h2>Challenges in Traditional Methods</h2>
+            <p>
+                Panoramic images produce a large number of object proposals, approximately 4666 per panorama, which makes post-classification computationally expensive. 
+                Traditional methods like selective search offer low coverage (62% at 0.5 overlap), insufficient for reliably detecting business storefronts.
+            </p>
+    
+            <h2>Use of MultiBox</h2>
+            <p>
+                The approach uses <strong>MultiBox</strong>, a convolutional network-based object proposal generator, which significantly reduces computational costs by predicting bounding boxes and their confidence scores in a single pass.
+            </p>
+            <div class="highlight">
+                <p>
+                    MultiBox is further enhanced by a sliding window approach with 87 crops per panorama, addressing the high-resolution nature of these images.
+                    Interestingly, task-specific priors were not required, as the 800 priors derived from the general dataset (ILSVRC 2014) performed effectively.
+                </p>
+            </div>
+    
+            <h2>Postclassification and Non-Maximum Suppression</h2>
+            <p>
+                Postclassification with <strong>GoogLeNet</strong> improves detection accuracy by 6.9%. To eliminate redundant bounding boxes, non-maximum suppression is applied with a low threshold (0.2).
+                The final detection score is calculated by combining the confidence scores from MultiBox and the postclassification step.
+            </p>
+    
+            <h2>Training on Equirectangular Panoramas</h2>
+            <p>
+                The detection system is trained directly on equirectangular projections of panoramic images. Though distorted, these projections are effective for training deep networks.
+                To enhance detection reliability, the postclassifier is trained with a 1:7 ratio of positive to negative crops.
+            </p>
+    
+            <h2>Key Learnings</h2>
+            <h3>1. Scalability & Efficiency</h3>
+            <p>
+                This approach demonstrates that convolutional neural networks can handle large-scale object detection tasks, even with thousands of proposals, by optimizing both proposal generation and classification.
+            </p>
+    
+            <h3>2. Multi-Crop Strategy</h3>
+            <p>
+                A multi-crop evaluation is crucial for detecting small objects in high-resolution images, which could be missed in lower-resolution versions.
+            </p>
+    
+            <h3>3. Priors Generalization</h3>
+            <p>
+                The use of general priors derived from unrelated datasets shows that a well-distributed set of object priors can generalize across different tasks, reducing the need for task-specific priors.
+            </p>
+    
+            <h3>4. Postprocessing</h3>
+            <p>
+                Postclassification and non-maximum suppression significantly improve the precision of object detection models, proving that initial proposal generation is not sufficient for high-quality detection.
+            </p>
+    
+            <h3>5. Handling Equirectangular Projections</h3>
+            <p>
+                Training on distorted equirectangular images has shown to be successful, paving the way for advancements in object detection within panoramic and 360° images.
+            </p>
+        </div>
+    </section>
+
+    <!-- Footer Section -->
+    <footer>
+        <!-- <p>&copy; 2024 Home Dashboard. Built with ❤️ by <a href="#">Jeet Patel</a></p> -->
+        <p>© 2024 Roadside Shops Signs Detection. All rights reserved to Jeet Patel. <a href="#">Privacy Policy</a></p>
+    </footer>
+
+

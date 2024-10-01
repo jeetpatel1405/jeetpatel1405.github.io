@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MultiBox Algorithm Overview</title>
+    <link rel="stylesheet" href="css/style.css">
+    <style>
+        /* Reset some common styling */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        /* Body styling with blue gradient */
+        body {
+            font-family: 'Roboto', sans-serif;
+            background: linear-gradient(135deg, #1e3c72, #2a5298); /* Blue gradient */
+            color: #333;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+
+        /* Navbar styling */
+        nav {
+            background-color: rgba(0, 0, 0, 0.8);
+            padding: 15px 0;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        nav ul li {
+            margin: 0 20px;
+        }
+
+        nav ul li a {
+            color: #fff;
+            font-weight: 500;
+            font-size: 18px;
+            text-decoration: none;
+            padding: 10px 20px;
+            transition: all 0.3s ease;
+        }
+
+        nav ul li a:hover {
+            background-color: #2a5298;
+            color: #fff;
+            border-radius: 20px;
+        }
+
+        /* Header Styling */
+        header {
+            background: rgba(255, 255, 255, 0.9);
+            text-align: center;
+            padding: 50px 20px;
+            box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.1);
+            border-bottom-left-radius: 50% 20%;
+            border-bottom-right-radius: 50% 20%;
+        }
+
+        header h1 {
+            color: #2a5298;
+            font-size: 48px;
+            letter-spacing: 2px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Content Section Styling */
+        main {
+            padding: 40px;
+            max-width: 1200px;
+            margin: 0 auto;
+            background: #fff;
+            color: #333;
+            border-radius: 15px;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+            flex-grow: 1; /* Allows main to grow */
+        }
+
+        main h2 {
+            color: #2a5298;
+            font-size: 32px;
+            margin-bottom: 20px;
+        }
+
+        main p {
+            font-size: 18px;
+            line-height: 1.6;
+            margin-bottom: 20px;
+        }
+
+        /* Footer Styling */
+        footer {
+            background-color: rgba(0, 0, 0, 0.9);
+            color: #fff;
+            text-align: center;
+            padding: 30px 0;
+            width: 100%;
+            margin-top: auto; /* Ensures footer stays at the bottom */
+        }
+
+        footer p {
+            margin: 0;
+            font-size: 16px;
+        }
+
+        footer p a {
+            color: #2a5298;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        footer p a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+
+        <nav>
+            <ul>
+              <li><a href="home.html">Abstract</a></li>
+              <li><a href="topic1.html">Methodology</a></li>
+              <li><a href="topic2.html">Algorithms</a></li>
+              <li><a href="topic3.html">Experiments</a></li>
+              <li><a href="topic4.html">References</a></li>
+            </ul>
+        </nav>
+
+
+    <main>
+        <section>
+            <h2>1. Core Concept</h2>
+            <p>Uses a single convolutional neural network (CNN) to directly predict multiple bounding box candidates along with their confidence scores. Employs a set of pre-computed "priors" (default boxes) to guide predictions.</p>
+            
+            <h2>2. Network Architecture</h2>
+            <p>Based on an Inception module described in previous work (Szegedy et al., 2015). Uses a 7x7 grid of the Inception module with reduced filter sizes (64 in total: 32 in 1x1 and 32 in 3x3 convolutional layers). Outputs 5n numbers, where n is the number of priors:</p>
+            <ul>
+                <li>4n for location (4 values per prior)</li>
+                <li>n for confidence (1 value per prior)</li>
+            </ul>
+
+            <h2>3. Priors</h2>
+            <p>A set of pre-computed clusters of possible object locations. In this implementation, they reused 800 priors derived from clustering all objects in the ILSVRC 2014 dataset.</p>
+
+            <h2>4. Training Process</h2>
+            <p>Matches priors with ground-truth boxes using maximum weight matching. The matching is based on Jaccard overlap between priors and ground-truth boxes. Trains the network to predict:</p>
+            <ul>
+                <li>Location output relative to matched prior</li>
+                <li>Confidence score (1 for matched priors, 0 for unmatched)</li>
+            </ul>
+
+            <h2>5. Loss Function</h2>
+            <p>Combines L2 localization loss and logistic loss for confidences. The formula is as follows:</p>
+            <p><strong>Σ(x_ij(α/2 ||l_i - g_j||² - log(c_i))) - Σ((1-Σx_ij)log(1-c_i))</strong></p>
+            <p>Where x_ij is the matching matrix, l_i is the predicted location, g_j is the ground-truth location, and c_i is the confidence score.</p>
+
+            <h2>6. Implementation Details</h2>
+            <p>Applied in a coarse sliding window fashion (multi-crop evaluation). Uses 3 scales with a minimum overlap of 0.2 between adjacent tiles, resulting in 87 crops total for an entire panorama. Employs non-maximum suppression with a low threshold of 0.2 to combine proposals.</p>
+
+            <h2>7. Post-processing</h2>
+            <p>Drops proposals below a certain threshold. Removes proposals not fully contained in the (0.1, 0.1) - (0.9, 0.9) sub-window of each crop.</p>
+
+            <h2>8. Post-classification</h2>
+            <p>Uses a GoogLeNet model trained on the MultiBox proposals. Extends each proposal by 16.6% and applies an affine transformation to fit the 224x224 receptive field of the network. The final score is the product of MultiBox confidence and post-classifier score.</p>
+
+            <h2>9. Training Methodology</h2>
+            <p>Trained using the DistBelief machine learning system with stochastic gradient descent. For panorama images, downsized original images by a factor of 8 for both MultiBox and post-classifier training. Post-classifier trained with a 1:7 ratio of positive to negative crops.</p>
+
+            <h2>Conclusion</h2>
+            <p>The MultiBox algorithm proved highly effective for business storefront detection, outperforming other approaches like Selective Search and Multi-Context Heatmap in both accuracy and computational efficiency. It achieved 91% recall with only about 863 proposals per image and could process a panorama in about 2.5 seconds, compared to 1.5 minutes for Selective Search with post-classification.</p>
+        </section>
+    </main>
+
+    <footer>
+      <p>© 2024 Roadside Shops Signs Detection. All rights reserved to Jeet Patel. <a href="#">Privacy Policy</a></p>
+
+    </footer>
+</body>
+</html>

@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home Dashboard</title>
+    <link rel="stylesheet" href="css/style.css">
+    <style>
+        /* Reset some common styling */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        /* Body styling with blue gradient */
+        body {
+            font-family: 'Roboto', sans-serif;
+            background: linear-gradient(135deg, #1e3c72, #2a5298); /* Blue gradient */
+            margin: 0;
+            color: #333;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+
+        /* Navbar styling */
+        nav {
+            background-color: rgba(0, 0, 0, 0.8);
+            padding: 15px 0;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        nav ul li {
+            margin: 0 20px;
+        }
+
+        nav ul li a {
+            color: #fff;
+            font-weight: 500;
+            font-size: 18px;
+            text-decoration: none;
+            padding: 10px 20px;
+            transition: all 0.3s ease;
+        }
+
+        nav ul li a:hover {
+            background-color: #2a5298;
+            color: #fff;
+            border-radius: 20px;
+        }
+
+        /* Header Styling */
+        header {
+            background: rgba(255, 255, 255, 0.9);
+            text-align: center;
+            padding: 50px 20px;
+            box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.1);
+            border-bottom-left-radius: 50% 20%;
+            border-bottom-right-radius: 50% 20%;
+        }
+
+        header h1 {
+            color: #2a5298;
+            font-size: 48px;
+            letter-spacing: 2px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Dashboard grid styling */
+        .dashboard {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            padding: 40px;
+            max-width: 1200px;
+            margin: 0 auto;
+            flex-grow: 1;
+        }
+
+        .link-card {
+            background: #fff;
+            border-radius: 15px;
+            padding: 30px;
+            text-align: center;
+            box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            cursor: pointer;
+        }
+
+        .link-card h2 {
+            font-size: 24px;
+            color: #2a5298;
+            margin-bottom: 10px;
+        }
+
+        .link-card p {
+            font-size: 16px;
+            color: #555;
+        }
+
+        .link-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0px 15px 30px rgba(0, 0, 0, 0.15);
+        }
+
+        /* Footer Styling */
+         /* Footer Styling */
+         footer {
+            background-color: rgba(0, 0, 0, 0.9);
+            color: #fff;
+            text-align: center;
+            padding: 30px 0;
+            width: 100%;
+            margin-top: auto; /* Ensures footer stays at the bottom */
+        }
+
+        footer p {
+            margin: 0;
+            font-size: 16px;
+        }
+
+        footer p a {
+            color: #2a5298;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        footer p a:hover {
+            text-decoration: underline;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            nav ul {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            nav ul li {
+                margin: 10px 0;
+            }
+
+            header h1 {
+                font-size: 36px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Navbar Section -->
+    <nav>
+        <ul>
+            <li><a href="home.html">Abstract</a></li>
+            <li><a href="topic1.html">Methodology</a></li>
+            <li><a href="topic2.html">Algorithms</a></li>
+            <li><a href="topic3.html">Experiments</a></li>
+            <li><a href="topic4.html">References</a></li>
+        </ul>
+    </nav>
+
+    <!-- Header Section -->
+    <header>
+        <h1>Welcome to the Home Dashboard</h1>
+    </header>
+
+    <!-- Main Dashboard Section -->
+    <section class="dashboard">
+        <div class="link-card" onclick="navigateTo('topic1.html')">
+            <h2>Methodology</h2>
+            <p></p>
+        </div>
+
+        <div class="link-card" onclick="navigateTo('topic2.html')">
+            <h2>Algorithms</h2>
+            <p>Basics of CSS</p>
+        </div>
+
+        <div class="link-card" onclick="navigateTo('topic3.html')">
+            <h2>Experiments</h2>
+            <p>JavaScript Fundamentals</p>
+        </div>
+
+        <div class="link-card" onclick="navigateTo('topic4.html')">
+            <h2>References</h2>
+            <p>React Overview</p>
+        </div>
+    </section>
+
+    <!-- Footer Section -->
+    <footer>
+        <!-- <p>&copy; 2024 Home Dashboard. Built with ❤️ by <a href="#">Jeet Patel</a></p> -->
+        <p>© 2024 Roadside Shops Signs Detection. All rights reserved to Jeet Patel. <a href="#">Privacy Policy</a></p>
+    </footer>
+
+    <!-- Script for navigation -->
+    <script>
+        function navigateTo(page) {
+            window.location.href = page;
+        }
+    </script>
+
+</body>
+</html>

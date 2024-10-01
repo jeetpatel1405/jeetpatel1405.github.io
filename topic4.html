@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>References</title>
+    <style>
+        /* Reset some common styling */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        /* Body styling with blue gradient */
+        body {
+            font-family: 'Roboto', sans-serif;
+            background: linear-gradient(135deg, #1e3c72, #2a5298); /* Blue gradient */
+            margin: 0;
+            color: #333;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+
+        /* Navbar styling */
+        nav {
+            background-color: rgba(0, 0, 0, 0.8);
+            padding: 15px 0;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        nav ul li {
+            margin: 0 20px;
+        }
+
+        nav ul li a {
+            color: #fff;
+            font-weight: 500;
+            font-size: 18px;
+            text-decoration: none;
+            padding: 10px 20px;
+            transition: all 0.3s ease;
+        }
+
+        nav ul li a:hover {
+            background-color: #2a5298;
+            color: #fff;
+            border-radius: 20px;
+        }
+
+        /* Header styling for references */
+        header {
+            background: rgba(255, 255, 255, 0.9);
+            text-align: center;
+            padding: 30px 20px;
+            box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.1);
+            border-bottom-left-radius: 50% 20%;
+            border-bottom-right-radius: 50% 20%;
+        }
+
+        header h1 {
+            color: #2a5298;
+            font-size: 36px;
+            letter-spacing: 2px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Content Section Styling */
+        .content-section {
+            padding: 50px;
+            background-color: #fff;
+            color: #333;
+            border-radius: 15px;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+            margin: 20px auto;
+            max-width: 1200px;
+        }
+
+        .content-section h2 {
+            color: #2a5298;
+            font-size: 32px;
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .references {
+            line-height: 1.6;
+        }
+
+        .references p {
+            font-size: 18px;
+        }
+
+        .references a {
+            color: #1a73e8;
+            text-decoration: none;
+        }
+
+        .references a:hover {
+            text-decoration: underline;
+        }
+
+        /* Footer Styling */
+        footer {
+            background-color: rgba(0, 0, 0, 0.9);
+            color: #fff;
+            text-align: center;
+            padding: 30px 0;
+            width: 100%;
+            margin-top: auto; /* Ensures footer stays at the bottom */
+        }
+
+        footer p {
+            margin: 0;
+            font-size: 16px;
+        }
+
+        footer p a {
+            color: #2a5298;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        footer p a:hover {
+            text-decoration: underline;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            nav ul {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            nav ul li {
+                margin: 10px 0;
+            }
+
+            header h1 {
+                font-size: 28px;
+            }
+
+            .content-section h2 {
+                font-size: 24px;
+            }
+
+            .references p {
+                font-size: 16px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Navbar Section -->
+    <nav>
+        <ul>
+            <li><a href="home.html">Abstract</a></li>
+            <li><a href="topic1.html">Methodology</a></li>
+            <li><a href="topic2.html">Algorithms</a></li>
+            <li><a href="topic3.html">Experiments</a></li>
+            <li><a href="topic4.html">References</a></li>
+        </ul>
+    </nav>
+
+    <!-- Content Section: References -->
+    <section class="content-section">
+        <header>
+            <h1>Research & References</h1>
+        </header>
+
+        <div class="references">
+
+            <p>1. <strong>Anguelov, D., Dulong, C., Filip, D., Frueh, C., Lafon, S., Lyon, R., Ogale, A., Vincent, L., & Weaver, J. (2010).</strong> Google Street View: Capturing the world at street level. <em>Computer</em>, 1, 2.</p>
+            <p>2. <strong>Dean, J., Corrado, G., Monga, R., Chen, K., Devin, M., Mao, M., Ranzato, M. A., Senior, A., Tucker, P., Yang, K., Le, Q. V., & Ng, A. Y. (2012).</strong> Large-scale distributed deep networks. In <em>Advances in Neural Information Processing Systems</em> (pp. 1223–1231).</p>
+            <p>3. <strong>Erhan, D., Szegedy, C., & Anguelov, D. (2014).</strong> Scalable object detection using deep neural networks. In <em>Proceedings of the IEEE Conference on Computer Vision and Pattern Recognition (CVPR)</em> (pp. 2155–2162).</p>
+            <p>4. <strong>Girshick, R., Donahue, J., Darrell, T., & Malik, J. (2014).</strong> Rich feature hierarchies for accurate object detection and semantic segmentation. In <em>Proceedings of the IEEE Conference on Computer Vision and Pattern Recognition (CVPR)</em>.</p>
+            <p>5. <strong>Everingham, M., Van Gool, L., Williams, C. K. I., Winn, J., & Zisserman, A. (2011).</strong> The PASCAL Visual Object Classes Challenge 2011 (VOC2011) Results. <a href="http://www.pascal-network.org/challenges/VOC/voc2011/workshop/index.html" target="_blank">http://www.pascal-network.org/challenges/VOC/voc2011/workshop/index.html</a>.</p>
+        </div>
+    </section>
+
+    <!-- Footer Section -->
+    <footer>
+        <p>© 2024 Roadside Shops Signs Detection. All rights reserved to Jeet Patel. <a href="#">Privacy Policy</a></p>
+    </footer>
+
+</body>
+</html>
